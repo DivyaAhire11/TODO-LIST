@@ -25,3 +25,23 @@ delBtn.onclick = function () {
     li.remove();
 };
 li.appendChild(delBtn);
+
+
+function saveTasks() {
+  let tasks = [];
+  document.querySelectorAll("#taskList li").forEach(li => {
+    tasks.push({
+      text: li.firstChild.textContent,
+      completed: li.classList.contains("completed")
+    });
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.forEach(task => {
+    // recreate task items
+  });
+}
+document.addEventListener('DOMContentLoaded', loadTasks);
